@@ -14,3 +14,7 @@ node_mod
 .env
 node_modules
 node_modules
+node_modules
+cache
+.env
+node_modules
