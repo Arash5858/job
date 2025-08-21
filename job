@@ -22,7 +22,11 @@ cache
 .env
 node_modules
 cache
+.envartifacts
+cache
 .env
+node_modules
+cache
 node_modules
 node_modules
 cache
