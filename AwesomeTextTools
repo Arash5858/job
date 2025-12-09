@@ -1,0 +1,47 @@
+"""
+AwesomeTextTools
+A simple Python module for basic text processing operations.
+"""
+
+def count_words(text: str) -> int:
+    """Return the number of words in the given text."""
+    return len(text.split())
+
+
+def count_characters(text: str) -> int:
+    """Return the number of characters (excluding spaces)."""
+    return len(text.replace(" ", ""))
+
+
+def reverse_text(text: str) -> str:
+    """Return the reversed version of the text."""
+    return text[::-1]
+
+
+if __name__ == "__main__":
+    sample = "Hello from AwesomeTextTools!"
+
+    print("Sample text:", sample)
+    print("Word count:", count_words(sample))
+    print("Character count:", count_characters(sample))
+    print("Reversed:", reverse_text(sample))
+# AwesomeTextTools
+
+A lightweight Python utility for simple text processing tasks.
+
+## Features
+- Count the number of words in a text
+- Count characters (excluding spaces)
+- Reverse text easily
+
+## Usage
+
+```python
+from text_tools import count_words, count_characters, reverse_text
+
+text = "Hello World"
+
+print(count_words(text))        # Output: 2
+print(count_characters(text))   # Output: 10
+print(reverse_text(text))       # Output: "dlroW olleH"
+python text_tools.py
