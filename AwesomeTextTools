@@ -27,6 +27,9 @@ if __name__ == "__main__":
     print("Reversed:", reverse_text(sample))
 # AwesomeTextTools
 
+def count_characters(text: str) -> int:
+    """Return the number of characters (excluding spaces)."""
+    return len(text.replace(" ", ""))
 A lightweight Python utility for simple text processing tasks.
 
 ## Features
