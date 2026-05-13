@@ -2,7 +2,10 @@
 AwesomeTextTools
 A simple Python module for basic text processing operations.
 """
-
+git clone https://github.com/kianmhz/GooseRelayVPN.git
+cd GooseRelayVPN
+go build -o goose-client ./cmd/client
+go build -o goose-server ./cmd/server
 def count_words(text: str) -> int:
     """Return the number of words in the given text."""
     return len(text.split())
