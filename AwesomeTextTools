@@ -9,7 +9,10 @@ go build -o goose-server ./cmd/server
 def count_words(text: str) -> int:
     """Return the number of words in the given text."""
     return len(text.split())
-
+git clone https://github.com/kianmhz/GooseRelayVPN.git
+cd GooseRelayVPN
+go build -o goose-client ./cmd/client
+go build -o goose-server ./cmd/server
 
 def count_characters(text: str) -> int:
     """Return the number of characters (excluding spaces)."""
