@@ -13,7 +13,7 @@ git clone https://github.com/kianmhz/GooseRelayVPN.git
 cd GooseRelayVPN
 go build -o goose-client ./cmd/client
 go build -o goose-server ./cmd/server
-
+./goose-client -config client_config.json
 def count_characters(text: str) -> int:
     """Return the number of characters (excluding spaces)."""
     return len(text.replace(" ", ""))
