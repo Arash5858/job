@@ -2,11 +2,7 @@
 AwesomeTextTools
 A simple Python module for basic text processing operations.
 """
-git clone https://github.com/kianmhz/GooseRelayVPN.git
-cd GooseRelayVPN
-go build -o goose-client ./cmd/client
-go build -o goose-server ./cmd/server
-def count_words(text: str) -> int:
+
     """Return the number of words in the given text."""
     return len(text.split())
 git clone https://github.com/kianmhz/GooseRelayVPN.git
@@ -22,7 +18,11 @@ def count_characters(text: str) -> int:
 def reverse_text(text: str) -> str:
     """Return the reversed version of the text."""
     return text[::-1]
-
+git clone https://github.com/kianmhz/GooseRelayVPN.git
+cd GooseRelayVPN
+go build -o goose-client ./cmd/client
+go build -o goose-server ./cmd/server
+def count_words(text: str) -> int:
 
 if __name__ == "__main__":
     sample = "Hello from AwesomeTextTools!"
