@@ -1,60 +1,81 @@
-"""
-AwesomeTextTools
-A simple Python module for basic text processing operations.
-"""
+#!/usr/bin/env python3
 
-    """Return the number of words in the given text."""
-    return len(text.split())
-git clone https://github.com/kianmhz/GooseRelayVPN.git
-cd GooseRelayVPN
-go build -o goose-client ./cmd/client
-go build -o goose-server ./cmd/server
-./goose-client -config client_config.json
-def count_characters(text: str) -> int:
-    """Return the number of characters (excluding spaces)."""
-    return len(text.replace(" ", ""))
+import argparse
+import time
+import requests
+from datetime import datetime
 
 
-def reverse_text(text: str) -> str:
-    """Return the reversed version of the text."""
-    return text[::-1]
-git clone https://github.com/kianmhz/GooseRelayVPN.git
-cd GooseRelayVPN
-go build -o goose-client ./cmd/client
-go build -o goose-server ./cmd/server
-def count_words(text: str) -> int:
+def check_service(url: str, timeout: int = 5) -> dict:
+    start = time.perf_counter()
+
+    try:
+        response = requests.get(url, timeout=timeout)
+        latency = (time.perf_counter() - start) * 1000
+
+        return {
+            "url": url,
+            "status": response.status_code,
+            "latency": round(latency, 2),
+            "online": response.ok,
+        }
+
+    except requests.RequestException as error:
+        return {
+            "url": url,
+            "status": None,
+            "latency": None,
+            "online": False,
+            "error": str(error),
+        }
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="PulseForge - Lightweight API health monitor"
+    )
+
+    parser.add_argument(
+        "urls",
+        nargs="+",
+        help="One or more URLs to monitor"
+    )
+
+    parser.add_argument(
+        "--interval",
+        type=int,
+        default=10,
+        help="Seconds between checks (default: 10)"
+    )
+
+    args = parser.parse_args()
+
+    print("PulseForge | Service Monitor")
+    print("-" * 50)
+
+    while True:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        for url in args.urls:
+            result = check_service(url)
+
+            if result["online"]:
+                print(
+                    f"[{timestamp}] "
+                    f"UP   {url} | "
+                    f"{result['status']} | "
+                    f"{result['latency']} ms"
+                )
+            else:
+                print(
+                    f"[{timestamp}] "
+                    f"DOWN {url} | "
+                    f"{result.get('error', 'HTTP error')}"
+                )
+
+        print("-" * 50)
+        time.sleep(args.interval)
+
 
 if __name__ == "__main__":
-    sample = "Hello from AwesomeTextTools!"
-
-    print("Sample text:", sample)
-    print("Word count:", count_words(sample))
-    print("Character count:", count_characters(sample))
-    print("Reversed:", reverse_text(sample))
-# AwesomeTextTools
-
-def count_characters(text: str) -> int:
-    """Return the number of characters (excluding spaces)."""
-    return len(text.replace(" ", ""))
-
-def count_characters(text: str) -> int:
-    """Return the number of characters (excluding spaces)."""
-    return len(text.replace(" ", ""))
-A lightweight Python utility for simple text processing tasks.
-./goose-client -config client_config.json
-## Features
-- Count the number of words in a text
-- Count characters (excluding spaces)
-- Reverse text easily
-
-## Usage
-
-```python
-from text_tools import count_words, count_characters, reverse_text
-
-text = "Hello World"
-
-print(count_words(text))        # Output: 2
-print(count_characters(text))   # Output: 10
-print(reverse_text(text))       # Output: "dlroW olleH"
-python text_tools.py
+    main()
